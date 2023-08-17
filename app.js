@@ -1,12 +1,11 @@
 import express from "express";
 import "dotenv/config";
 
-import config from "./config.js";
 import POIsRouter from "./routes/pois.js";
 import { corsMiddleware } from "./middlewares/cors.js";
 
 const app = express();
-const port = config.port ?? 3000;
+const port = process.env.PORT ?? 3000;
 
 // Middlewares
 app.use(express.json());
