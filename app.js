@@ -1,6 +1,5 @@
 import express from "express";
-import { config } from "dotenv";
-config();
+import "dotenv/config";
 
 import POIsRouter from "./routes/pois.js";
 import { corsMiddleware } from "./middlewares/cors.js";
