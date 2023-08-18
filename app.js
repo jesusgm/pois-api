@@ -8,18 +8,19 @@ import CateogryRouter from "./routes/categories.js";
 
 const app = express();
 const port = process.env.PORT ?? 3000;
+const basePath = process.env.BASE_PATH ?? "/";
 
 // Middlewares
 app.use(express.json());
 app.use(corsMiddleware());
 
 // Routes
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get(`${basePath}`, (req, res) => {
+  res.send("Pois API!");
 });
 
-app.use("/pois", POIsRouter);
-app.use("/categories", CateogryRouter);
+app.use(`${basePath}/pois`, POIsRouter);
+app.use(`${basePath}/categories`, CateogryRouter);
 
 // Start server
 app.listen(port, () => {
