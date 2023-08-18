@@ -1,7 +1,7 @@
 import { POIsModel } from "../models/poi.js";
 import { poiSchema } from "../schemas/poi.js";
 
-export class POIs {
+export class POIsController {
   static async getAll() {
     return await POIsModel.getAll();
   }

@@ -1,8 +1,10 @@
 import express from "express";
 import "dotenv/config";
 
-import POIsRouter from "./routes/pois.js";
 import { corsMiddleware } from "./middlewares/cors.js";
+
+import POIsRouter from "./routes/pois.js";
+import CateogryRouter from "./routes/categories.js";
 
 const app = express();
 const port = process.env.PORT ?? 3000;
@@ -17,6 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/pois", POIsRouter);
+app.use("/categories", CateogryRouter);
 
 // Start server
 app.listen(port, () => {

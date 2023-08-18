@@ -1,16 +1,16 @@
 import { Router } from "express";
-import { POIs } from "../controllers/pois.js";
+import { POIsController } from "../controllers/pois.js";
 
 const router = Router();
 
 router.get("/", async (req, res) => {
-  const pois = await POIs.getAll();
+  const pois = await POIsController.getAll();
   res.json(pois);
 });
 
 router.post("/", async (req, res) => {
   // save the poi
-  const result = await POIs.save(req.body);
+  const result = await POIsController.save(req.body);
 
   // return the poi
   res.status(201).json(result);
@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const poi = await POIs.getById(req.params.id);
+    const poi = await POIsController.getById(req.params.id);
     res.json(poi);
   } catch (e) {
     res.status(404).json({ error: e.message });
