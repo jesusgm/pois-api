@@ -4,7 +4,7 @@ const QUERIES = {
   getAll: "SELECT * FROM pois",
   getById: "SELECT * FROM pois WHERE id = ?",
   insert:
-    "INSERT INTO pois (name, latitude, longitude, status_id, category, subcategory) VALUES (?, ?, ?, ?, ?, ?)",
+    "INSERT INTO pois (name, latitude, longitude, status_id, category_id) VALUES (?, ?, ?, ?, ?)",
 };
 
 export class POIsModel {
@@ -17,15 +17,14 @@ export class POIsModel {
   }
 
   static async save(poi) {
-    const { name, latitude, longitude, status_id, category, subcategory } = poi;
+    const { name, latitude, longitude, status_id, category_id } = poi;
 
     return await db.query(QUERIES.insert, [
       name,
       latitude,
       longitude,
       status_id,
-      category,
-      subcategory,
+      category_id,
     ]);
   }
 }
