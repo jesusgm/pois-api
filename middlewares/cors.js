@@ -6,11 +6,13 @@ export const corsMiddleware = ({ acceptedOptions = ACCEPTED_OPTIONS } = {}) =>
   cors({
     origin: (origin, callback) => {
       if (acceptedOptions.indexOf(origin)) {
+        console.log({ origin });
         return callback(null, true);
       }
       if (!origin) {
         return callback(null, true);
       }
+      console.log("Not allowed by CORS");
       return callback(new Error("Not allowed by CORS"));
     },
   });
