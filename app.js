@@ -5,9 +5,10 @@ import { corsMiddleware } from "./middlewares/cors.js";
 
 import POIsRouter from "./routes/pois.js";
 import CateogryRouter from "./routes/categories.js";
+import StatusRouter from "./routes/statuses.js";
 
 const app = express();
-const port = process.env.PORT ?? 3000;
+const port = process.env.PORT;
 const basePath = process.env.BASE_PATH ?? "/";
 
 // Middlewares
@@ -21,6 +22,7 @@ app.get(`${basePath}`, (req, res) => {
 
 app.use(`${basePath}/pois`, POIsRouter);
 app.use(`${basePath}/categories`, CateogryRouter);
+app.use(`${basePath}/status`, StatusRouter);
 
 // Start server
 app.listen(port, () => {
