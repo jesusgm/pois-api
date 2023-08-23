@@ -19,14 +19,6 @@ export class POIsModel {
   static async save(poi) {
     const { name, latitude, longitude, status_id, category_id } = poi;
 
-    console.log({
-      name,
-      latitude,
-      longitude,
-      status_id,
-      category_id,
-    });
-
     return await db.query(QUERIES.insert, [
       name,
       latitude,
