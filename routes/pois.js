@@ -10,10 +10,14 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   // save the poi
-  const result = await POIsController.save(req.body);
+  try {
+    const result = await POIsController.save(req.body);
 
-  // return the poi
-  res.status(201).json(result);
+    // return the poi
+    res.status(201).json(result);
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
 });
 
 router.get("/:id", async (req, res) => {
