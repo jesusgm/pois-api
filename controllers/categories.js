@@ -25,4 +25,18 @@ export class CategoriesController {
 
     return await CategoryModel.save(category.data);
   }
+
+  static async update(id, data) {
+    const category = categorySchema.safeParse(data);
+
+    if (!category.success) {
+      throw new Error(category.error);
+    }
+
+    return await CategoryModel.update(id, category.data);
+  }
+
+  static async delete(id) {
+    return await CategoryModel.delete(id);
+  }
 }

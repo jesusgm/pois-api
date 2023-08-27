@@ -4,6 +4,8 @@ const QUERIES = {
   getAll: "SELECT * FROM category",
   getById: "SELECT * FROM category WHERE id = ?",
   insert: "INSERT INTO category (name, parent_id) VALUES (?, ?)",
+  update: "UPDATE category SET name = ?, parent_id = ? WHERE id = ?",
+  delete: "DELETE FROM category WHERE id = ?",
 };
 
 export class CategoryModel {
@@ -19,5 +21,15 @@ export class CategoryModel {
     const { name, parent_id } = poi;
 
     return await db.query(QUERIES.insert, [name, parent_id]);
+  }
+
+  static async update(id, poi) {
+    const { name, parent_id } = poi;
+
+    return await db.query(QUERIES.update, [name, parent_id, id]);
+  }
+
+  static async delete(id) {
+    return await db.query(QUERIES.delete, [id]);
   }
 }
