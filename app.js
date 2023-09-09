@@ -24,6 +24,10 @@ app.use(`${basePath}/pois`, POIsRouter);
 app.use(`${basePath}/categories`, CateogryRouter);
 app.use(`${basePath}/status`, StatusRouter);
 
+app.use((req, res) => {
+  res.status(404).json({ error: "Not found" });
+});
+
 // Start server
 app.listen(port, () => {
   console.log(`Pois API listening on port ${port}`);

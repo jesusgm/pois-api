@@ -25,4 +25,14 @@ export class POIsController {
 
     return await POIsModel.save(poi.data);
   }
+
+  static async update(data) {
+    const poi = poiSchema.safeParse(data);
+
+    if (!poi.success) {
+      throw new Error(poi.error);
+    }
+
+    return await POIsModel.update(poi.data);
+  }
 }

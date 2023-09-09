@@ -5,6 +5,8 @@ const QUERIES = {
   getById: "SELECT * FROM pois WHERE id = ?",
   insert:
     "INSERT INTO pois (name, latitude, longitude, status_id, category_id) VALUES (?, ?, ?, ?, ?)",
+  update:
+    "UPDATE pois SET name = ?, latitude = ?, longitude = ?, status_id = ?, category_id = ? WHERE id = ?",
 };
 
 export class POIsModel {
@@ -25,6 +27,19 @@ export class POIsModel {
       longitude,
       status_id,
       category_id,
+    ]);
+  }
+
+  static async update(poi) {
+    const { id, name, latitude, longitude, status_id, category_id } = poi;
+
+    return await db.query(QUERIES.update, [
+      name,
+      latitude,
+      longitude,
+      status_id,
+      category_id,
+      id,
     ]);
   }
 }
