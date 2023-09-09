@@ -31,7 +31,10 @@ router.get("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-    const poi = await POIsController.update({ ...req.body, id: req.params.id });
+    const poi = await POIsController.update({
+      ...req.body,
+      id: parseInt(req.params.id, 10),
+    });
     res.json(poi);
   } catch (e) {
     res.status(404).json({ error: e.message });
