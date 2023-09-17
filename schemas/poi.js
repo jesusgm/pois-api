@@ -5,6 +5,7 @@ export const poiSchema = z.object({
   name: z.string().min(3).max(255),
   latitude: z.number(),
   longitude: z.number(),
+  altitude: z.number().optional().default(0),
   status_id: z.number().optional(),
   category_id: z.number().optional(),
 });
