@@ -4,7 +4,7 @@ const QUERIES = {
   getAll: "SELECT * FROM pois",
   getById: "SELECT * FROM pois WHERE id = ?",
   insert:
-    "INSERT INTO pois (name, latitude, longitude,altitude,  status_id, category_id) VALUES (?, ?, ?, ?, ?)",
+    "INSERT INTO pois (name, latitude, longitude, altitude,  status_id, category_id) VALUES (?, ?, ?, ?, ?, ?)",
   update:
     "UPDATE pois SET name = ?, latitude = ?, longitude = ?, altitude = ?, status_id = ?, category_id = ? WHERE id = ?",
 };
