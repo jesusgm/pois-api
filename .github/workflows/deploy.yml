@@ -1,0 +1,30 @@
+name: "Deploy to Raspberry PI"
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    concurrency:
+      group: ${{ github.ref }}
+      cancel-in-progress: true
+    runs-on: ubuntu-22.04
+
+    strategy:
+      matrix:
+        node-version: [ubuntu-22.04]
+    steps:
+      - name: Deploy using ssh
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_SERVER }} 
+            cd proyectos/pois-api
+            git pull
+            pm2 restart "Pois API"
+          host: ${{ secrets.DEPLOY_SERVER }}
+          user: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.PRIVATE_KEY}}
+          pass: ${{ secrets.PASSWORD }}
+          args: "-tt"
