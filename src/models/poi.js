@@ -1,8 +1,10 @@
 import db from "../db/mysql.js";
 
 const QUERIES = {
-  getAll: "SELECT * FROM pois",
-  getById: "SELECT * FROM pois WHERE id = ?",
+  getAll:
+    "SELECT p.*, c.icon as category_icon FROM pois p INNER JOIN category c ON p.category_id = c.id",
+  getById:
+    "SELECT p.*, c.icon as category_icon FROM pois p INNER JOIN category c ON p.category_id = c.id WHERE p.id = ?",
   insert:
     "INSERT INTO pois (name, latitude, longitude, altitude,  status_id, category_id) VALUES (?, ?, ?, ?, ?, ?)",
   update:
