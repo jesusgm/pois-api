@@ -5,6 +5,7 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   const categories = await CategoriesController.getAll();
+  console.log(categories);
   res.json(categories);
 });
 

@@ -16,6 +16,8 @@ app.use(express.json());
 app.use(corsMiddleware());
 
 // Routes
+app.use(express.static("public"));
+
 app.get(`${basePath}`, (req, res) => {
   res.send("Pois API!");
 });
